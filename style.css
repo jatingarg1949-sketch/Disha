@@ -268,3 +268,164 @@ inset:0;
 pointer-events:none;
 
 }
+
+// ================================
+// script.js (Part 2 - Final)
+// ================================
+
+// Final Birthday Message
+const birthdayMessage = `🎉 Mission Complete!
+
+Happy Birthday, Disha! ❤️
+
+You successfully completed every mission.
+
+May your smile always shine brighter than the stars. ✨
+
+May this year bring happiness,
+success, good health,
+lots of cake 🍰
+and unforgettable memories.
+
+Never stop smiling...
+
+Have an amazing birthday! 🥳🎂❤️`;
+
+const wish = document.getElementById("wish");
+
+// Celebrate Button
+celebrateBtn.addEventListener("click", () => {
+
+    celebrateBtn.disabled = true;
+
+    typeMessage();
+
+    launchConfetti();
+
+    launchFireworks();
+
+});
+
+// Typing Animation
+function typeMessage(){
+
+    wish.innerHTML="";
+
+    let i=0;
+
+    const typing=setInterval(()=>{
+
+        if(i>=birthdayMessage.length){
+
+            clearInterval(typing);
+            return;
+
+        }
+
+        if(birthdayMessage[i]=="\n"){
+
+            wish.innerHTML+="<br>";
+
+        }else{
+
+            wish.innerHTML+=birthdayMessage[i];
+
+        }
+
+        i++;
+
+    },35);
+
+}
+
+// Confetti
+function launchConfetti(){
+
+    confetti({
+        particleCount:250,
+        spread:150,
+        origin:{y:0.6}
+    });
+
+}
+
+// Fireworks
+
+function launchFireworks(){
+
+    let count=0;
+
+    const timer=setInterval(()=>{
+
+        confetti({
+
+            particleCount:90,
+
+            spread:100,
+
+            startVelocity:60,
+
+            origin:{
+                x:Math.random(),
+                y:Math.random()*0.5
+            }
+
+        });
+
+        count++;
+
+        if(count==12){
+
+            clearInterval(timer);
+
+        }
+
+    },500);
+
+}
+
+// Floating Hearts
+
+setInterval(()=>{
+
+    const heart=document.createElement("div");
+
+    heart.innerHTML="❤️";
+
+    heart.style.position="fixed";
+
+    heart.style.left=Math.random()*100+"vw";
+
+    heart.style.bottom="-40px";
+
+    heart.style.fontSize=(20+Math.random()*20)+"px";
+
+    heart.style.transition="all 5s linear";
+
+    heart.style.pointerEvents="none";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+
+        heart.style.bottom="110vh";
+
+        heart.style.opacity="0";
+
+    },50);
+
+    setTimeout(()=>{
+
+        heart.remove();
+
+    },5000);
+
+},900);
+
+// Small Secret
+
+document.getElementById("logo").addEventListener("click",()=>{
+
+    alert("🎉 Secret Unlocked!\n\nAgent Disha is officially the Birthday Queen! 👑❤️");
+
+});9
